@@ -1,0 +1,35 @@
+<DOCTYPE html>
+<html ng-app="myModule">
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.js"></script>
+		<script src="ang.js"></script>
+	</head>
+	
+	<body>
+		<input type="text" ng-model="txtin">
+		<select ng-model="selly">
+			<option value="name">Name</option>
+			<option value="age">Age</option>
+			<option value="gender">Gender</option>
+		</select>
+		<input type="button" value="Sort" ng-click="sortAZ()">
+		
+		<div ng-controller="MyController">
+			<table>
+				<tr>
+					<th>Name {{sortC}}</th>
+					<th>Age</th>
+					<th>Gender</th>
+					<th>Friends</th>
+				<tr>
+				<tr ng-repeat="employee in employees|orderBy:selly:sortC">
+					<td>{{employee.name}} and {{$index}}</td>
+					<td>{{employee.age|number:0}}</td>
+					<td>{{employee.gender}}</td>
+					<td ng-repeat="friend in employee.friends">{{friend.name}} w/ {{$index}} and P:{{$parent.$index}}, </td>
+				</tr>
+			</table>
+		</div>
+		
+	</body>
+</html>
